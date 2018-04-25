@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-sm">
+<table data-toggle="table" class="table">
+<div class="col-sm">
     </div>
     <div class="table-responsive"> 
     <h1>ACTIVITIES.</h1>
@@ -14,26 +14,21 @@
                   <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody>
-              <?php
-              $id=$this->session->get('memberAuthen');
-              $act = Activities::find("id = '$id'");
-              for ($i=0;$i<count($act);$i++){?>
-                <tr>
-                  <th scope="row"><?php echo "$i"+1 ?></th>
-                  <td><?php
-                    echo $act[$i]->name; ?></td>
-                  <td><?php echo $act[$i]->date; ?></td>
-                  <td><a style="color:white;" href="<?php echo $this->url->getBaseUri(); ?>event/setId/<?php echo $act[$i]->id;?>" class="btn btn-info" id="edit<?php echo $act[$i]->actid;?>" name="edit<?php echo $act[$i]->actid;?>" value="<?php echo $act[$i]->actid;?>">edit</a></td>
+    <tbody>
+        <?php foreach($data as $item){?>
+            <tr>
+                <td><?php echo $item->name ?></td>
+                <td><?php echo $item->date ?></td>
+                <td><?php echo $item->detail ?></td>
+                <td><a style="color:white;" href="<?php echo $this->url->getBaseUri(); ?>event/setId/<?php echo $act[$i]->id;?>" class="btn btn-info" id="edit<?php echo $act[$i]->actid;?>" name="edit<?php echo $act[$i]->actid;?>" value="<?php echo $act[$i]->actid;?>">edit</a></td>
                   <td><a href="<?php echo $this->url->getBaseUri(); ?>event/deleteId/<?php echo $act[$i]->id;?>" class="btn btn-danger">delete</a></td>
                 </tr>
-              <?php }?>
-              </tbody>
-            </table>
-          </div>
-    </div>
-    <div class="col-sm">
-    </div>
-  </div>
-  <a href="<?php echo $this->url->getBaseUri(); ?>" class="btn btn-warning">Back</a>
-  <a href="<?php echo $this->url->getBaseUri(); ?>event/add" class="btn btn-success">ADD</a>
+                </td>
+
+        <?php } ?>
+    </tbody>
+</table>   
+
+<center>
+<a align="right" href="<?php echo $this->url->getBaseUri().'event/add' ?>" class="btn btn-info"> Add </a> 
+<a href="<?php echo $this->url->getBaseUri() ?>" class="btn btn-warning"> Back </a>
